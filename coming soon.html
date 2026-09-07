@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>お問い合わせ | 立命館大学 体育会系女子ラクロス部</title>
+  <link rel="stylesheet" href="lacrosse.css" />
+</head>
+<body>
+<!-- ===== ヘッダー / ナビ ===== -->
+<header class="header">
+  <div class="container nav">
+    <div class="brand">
+      <span>体育会系女子ラクロス部</span>
+
+      <!-- 押せる「公式」 -->
+      <button class="badge badge-btn"
+              id="menuToggle"
+              aria-expanded="false"
+              aria-controls="dropMenu">
+        公式
+      </button>
+    </div>
+
+    <!-- 通常ナビ（残してOK） -->
+    <nav class="menu">
+      <a href="webmain.html">トップ</a>
+      <a href="clubintro.html">部活紹介</a>
+      <a href="activity1.html">活動内容</a>
+      <a href="memberintro2.html">選手紹介</a>
+      <a href="coming soon.html">新入生へ</a>
+      <a href="coming soon.html">お問い合わせ</a>
+    </nav>
+  </div>
+
+   <!-- ▼ 公式リンク一覧（ドロップダウン） -->
+  <div class="container drop-wrap">
+    <nav class="drop-menu" id="dropMenu">
+      <a href="https://www.instagram.com/rits_lacrosse?igsh=MTJ6ZHZocTA3MXdieQ=="
+         target="_blank" rel="noopener" class="drop-link">
+        Instagram（公式）
+      </a>
+
+      <a href="https://www.instagram.com/rits_women_lax2026?igsh=aHhyOXdodXZqeTNk&utm_source=qr"
+         target="_blank" rel="noopener" class="drop-link">
+        Instagram（新歓）
+      </a>
+
+      <a href="https://www.tiktok.com/@ritsumei_lacrosse?_r=1&_t=ZS-93H70WeA2gn"
+         target="_blank" rel="noopener" class="drop-link">
+        TikTok（公式）
+      </a>
+
+      <a href="https://ブログのURL"
+         target="_blank" rel="noopener" class="drop-link">
+        Blog
+      </a>
+
+      <a href="https://クラウドファンディングのURL"
+         target="_blank" rel="noopener" class="drop-link">
+        クラウドファンディング
+      </a>
+
+      <a href="https://www.amazon.jp/hz/wishlist/ls/3PS4M8LDJISPX?ref_=wl_share"
+         target="_blank" rel="noopener" class="drop-link">
+        Amazon欲しいものリスト
+      </a>
+    </nav>
+  </div>
+</header>
+<body>
+
+<div class="coming-wrap">
+  <div class="coming-box">
+    <h1>COMING SOON</h1>
+    <div class="line"></div>
+    <p>現在準備中です。<br>公開までしばらくお待ちください。</p>
+  </div>
+</div>
+
+
+<footer class="footer-full">
+  <div class="footer-inner">
+
+    <div class="footer-top">
+      <div class="footer-brand-block">
+        <p class="footer-kicker">RITS WOMEN'S LACROSSE</p>
+        <h2 class="footer-club-name">立命館大学 体育会系女子ラクロス部</h2>
+        <p class="footer-desc">
+          試合情報・活動内容・新歓情報は各公式SNSでも発信しています。
+        </p>
+
+        <div class="footer-sns">
+          <a href="https://www.instagram.com/rits_lacrosse?igsh=MTJ6ZHZocTA3MXdieQ==" target="_blank" rel="noopener" aria-label="Instagram（公式）">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.tiktok.com/@ritsumei_lacrosse?_r=1&_t=ZS-93H70WeA2gn" target="_blank" rel="noopener" aria-label="TikTok（公式）">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-nav-block">
+        <p class="footer-heading">MENU</p>
+        <nav class="footer-links">
+          <a href="#top">トップ</a>
+          <a href="clubintro.html">部活紹介</a>
+          <a href="activity1.html">活動内容</a>
+          <a href="memberintro2.html">選手紹介</a>
+          <a href="coming soon.html">新入生へ</a>
+          <a href="coming soon.html">お問い合わせ</a>
+        </nav>
+      </div>
+
+      <div class="footer-sponsor-block">
+        <p class="footer-heading">SPONSORS</p>
+        <div class="footer-sponsors">
+          <div class="footer-photo-wrap">
+            <img src="images/sponserlogo2.jpg" alt="スポンサーロゴ" class="footer-photo footer-logo">
+          </div>
+
+          <div class="footer-photo-wrap footer-center-logo">
+            <img src="images/ritsumei3.png" alt="立命館大学女子ラクロス部" class="footer-photo">
+          </div>
+
+          <div class="footer-photo-wrap">
+            <img src="images/ritsumeimeikanuni.jpg" alt="立命館大学" class="footer-photo">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="privacy.html">プライバシーポリシー</a>
+        <a href="site.html">サイトポリシー</a>
+        
+      </div>
+
+      <small class="footer-copy">
+        © <span id="footerYear"></span> 立命館大学 体育会系女子ラクロス部 All Rights Reserved.
+      </small>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('dropMenu');
+
+  function closeMenu(){
+    menu.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = menu.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // 外部リンクを押したら閉じる
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => closeMenu());
+  });
+
+  // 外を押したら閉じる
+  document.addEventListener('click', () => closeMenu());
+
+  // ESCキー対応
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
+</body>
+</html>

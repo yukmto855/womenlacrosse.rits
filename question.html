@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>お問い合わせ | 立命館大学 体育会系女子ラクロス部</title>
+  <link rel="stylesheet" href="lacrosse.css" />
+</head>
+<body>
+<!-- ===== ヘッダー / ナビ ===== -->
+<header class="header">
+  <div class="container nav">
+    <div class="brand">
+      <span>体育会系女子ラクロス部</span>
+
+      <!-- 押せる「公式」 -->
+      <button class="badge badge-btn"
+              id="menuToggle"
+              aria-expanded="false"
+              aria-controls="dropMenu">
+        公式
+      </button>
+    </div>
+
+    <!-- 通常ナビ（残してOK） -->
+    <nav class="menu">
+      <a href="webmain.html">トップ</a>
+      <a href="clubintro.html">部活紹介</a>
+      <a href="activity1.html">活動内容</a>
+      <a href="memberintro.html">選手紹介</a>
+      <a href="coming soon.html">新歓</a>
+      <a href="question.html">お問い合わせ</a>
+    </nav>
+  </div>
+
+  <!-- ▼ 公式リンク一覧（ドロップダウン） -->
+  <div class="container drop-wrap">
+    <nav class="drop-menu" id="dropMenu">
+      <a href="https://www.instagram.com/rits_lacrosse?igsh=MTJ6ZHZocTA3MXdieQ=="
+         target="_blank" rel="noopener" class="drop-link">
+        Instagram（公式）
+      </a>
+
+      <a href="https://www.instagram.com/rits_women_lax2026?igsh=aHhyOXdodXZqeTNk&utm_source=qr"
+         target="_blank" rel="noopener" class="drop-link">
+        Instagram（新歓）
+      </a>
+
+      <a href="https://www.tiktok.com/@ritsumei_lacrosse?_r=1&_t=ZS-93H70WeA2gn"
+         target="_blank" rel="noopener" class="drop-link">
+        TikTok（公式）
+      </a>
+
+      <a href="https://ブログのURL"
+         target="_blank" rel="noopener" class="drop-link">
+        Blog
+      </a>
+
+      <a href="https://クラウドファンディングのURL"
+         target="_blank" rel="noopener" class="drop-link">
+        クラウドファンディング
+      </a>
+
+      <a href="https://www.amazon.jp/hz/wishlist/ls/3PS4M8LDJISPX?ref_=wl_share"
+         target="_blank" rel="noopener" class="drop-link">
+        Amazon欲しいものリスト
+      </a>
+    </nav>
+  </div>
+</header>
+<section id="contact" class="contact-full">
+  <div class="container">
+<h3 class="section-title-label">お問い合わせ</h3>
+<!-- ===== お問い合わせ ===== -->
+<section id="contact" class="grid">
+  <article class="card span-12">
+    <h2>公式サイトURLまとめ(@をタップでサイトに飛べます!)</h2>
+    <ul class="list">
+      <li>
+        Instagram公式アカウント:
+        <a href="https://www.instagram.com/rits_lacrosse?igsh=MTJ6ZHZocTA3MXdieQ=="
+           target="_blank" rel="noopener">
+          @rits_lacrosse
+        </a>
+      </li>
+      <li>
+        Instagram新歓アカウント:
+        <a href="https://www.instagram.com/rits_women_lax2026?igsh=aHhyOXdodXZqeTNk&utm_source=qr"
+           target="_blank" rel="noopener">
+          @rits_women_lax2026
+        </a>
+      </li>
+      <li>
+        TikTok公式アカウント:
+        <a href="https://www.tiktok.com/@ritsumei_lacrosse?_r=1&_t=ZS-93H70WeA2gn"
+           target="_blank" rel="noopener">
+          @ritsumei_lacrosse
+        </a>
+      </li>
+      <li>
+        Blogサイト:
+        <a href="https://ブログのURL"
+           target="_blank" rel="noopener">
+          @ame_blog
+        </a>
+      </li>
+      <li>
+        クラウドファンディング:
+        <a href="https://クラウドファンディングのURL"
+           target="_blank" rel="noopener">
+          @cloudfanding
+        </a>
+      </li>
+      <li>
+        amazon欲しいものリスト:
+        <a href="https://amazon欲しいものリストのURL"
+           target="_blank" rel="noopener">
+          @amazon欲しいものリスト
+        </a>
+      </li>
+      <li>
+        公式グッズサイト:
+        <a href="https://amazon欲しいものリストのURL"
+           target="_blank" rel="noopener">
+          @公式グッズサイト
+        </a>
+      </li>
+    </ul>
+  </article>
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('dropMenu');
+
+  function closeMenu(){
+    menu.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = menu.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // 外部リンクを押したら閉じる
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => closeMenu());
+  });
+
+  // 外を押したら閉じる
+  document.addEventListener('click', () => closeMenu());
+
+  // ESCキー対応
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>
+</div>
+</section>

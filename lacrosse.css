@@ -1,0 +1,2265 @@
+/* =========================================================
+   RITS WOMEN LACROSSE - SITE CSS (PC/スマホ両対応 1本化)
+   置き換え用：lacrosse.css をこれに統一
+========================================================= */
+
+/* ---------- Theme / Tokens ---------- */
+:root{
+  --bg: #ffffff;
+  --text: #111;
+  --muted: rgba(0,0,0,.72);
+
+  --brand: rgba(178, 18, 18, 0.92);      /* えんじ */
+  --brand-weak: rgba(178,18,18,.18);
+  --brand-soft: rgba(239,189,202,.35);
+
+  --line: rgba(158,73,98,.22);
+  --whiteLine: rgba(255,255,255,.22);
+
+  --radius: 18px;
+  --radius-sm: 12px;
+
+  /* Layout */
+  --pageW: min(1100px, 92vw);
+  --gutter: clamp(14px, 3vw, 24px);
+  --sectionY: clamp(32px, 6vw, 70px);
+
+  /* Typography */
+  --h1: clamp(30px, 5vw, 52px);
+  --h2: clamp(22px, 3.6vw, 34px);
+  --h3: clamp(18px, 2.6vw, 22px);
+  --p:  clamp(15px, 2.2vw, 18px);
+
+  /* Effects */
+  --shadow: 0 16px 36px rgba(0,0,0,.08);
+  --shadow-soft: 0 10px 30px rgba(0,0,0,.12);
+}
+
+/* ---------- Reset / Base ---------- */
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+body{
+  overflow-x: hidden; /* 100vw系の横ズレ対策 */
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(900px 600px at 10% 0%, rgba(255,159,179,.18), transparent 55%),
+    radial-gradient(900px 600px at 90% 10%, rgba(255,196,209,.15), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+img{ max-width:100%; height:auto; display:block; }
+a{ color: inherit; text-decoration: none; }
+button,input{ font: inherit; }
+html{ scroll-behavior: smooth; }
+
+h1,h2,h3,p{ margin:0; }
+p{ color: var(--muted); font-size: var(--p); }
+
+/* ---------- Common Containers ---------- */
+.container,
+.wrap{
+  width: var(--pageW);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* セクションの基本余白（各ページで統一） */
+section{
+  scroll-margin-top: 92px;
+  padding-top: var(--sectionY);
+  padding-bottom: var(--sectionY);
+}
+
+/* 全幅にしたいセクションだけに付ける */
+.fullbleed{
+  width: 100%;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ---------- Header / Nav ---------- */
+
+
+
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: var(--brand);
+  border-bottom: 1px solid var(--whiteLine);
+}
+
+.header .brand span{
+  font-size: 15px;
+  line-height: 1;
+}
+
+.header .menu a{
+  font-size: 15px;
+  line-height: 1;
+}
+
+.header .badge{
+  font-size: 12px;
+  line-height: 1;
+}
+
+.header .nav{
+  min-height: 64px;
+  align-items: center;
+}
+
+.header .menu{
+  align-items: center;
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 14px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  font-weight: 900;
+  letter-spacing: .4px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.badge{
+  font-size: 12px;
+  padding: 6px 12px;
+  border: 1px solid var(--whiteLine);
+  border-radius: 999px;
+  color: #fff;
+}
+.badge-btn{
+  background: transparent;
+  cursor: pointer;
+}
+
+/* 横スクロールメニュー（スマホでも崩れない） */
+.menu{
+  display:flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.menu::-webkit-scrollbar{ display:none; }
+
+.menu a{
+  flex: 0 0 auto;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color:#fff;
+  font-weight: 400;
+  font-family: Verdana;
+  transition: background-color .15s ease, transform .15s ease;
+}
+.menu a:hover{
+  background: rgba(255,255,255,.12);
+  transform: translateY(-1px);
+}
+
+/* ---------- Dropdown (公式) ---------- */
+.drop-wrap{ padding-bottom: 10px; }
+
+.drop-menu{
+  display:none;
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
+}
+.drop-menu.is-open{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.drop-link{
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.20);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: .2px;
+  transition: transform .15s ease, background-color .15s ease, border-color .15s ease;
+}
+.drop-link:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.22);
+  border-color: rgba(255,255,255,.35);
+}
+.drop-link.is-primary{
+  background: rgba(255,255,255,.90);
+  color: var(--brand);
+  border-color: rgba(255,255,255,.75);
+}
+.drop-link.is-primary:hover{ background:#fff; }
+
+/* ---------- Hero (Top) ---------- */
+.hero{
+  padding-top: clamp(40px, 8vw, 70px);
+  padding-bottom: clamp(16px, 4vw, 28px);
+}
+.hero h1{
+  font-size: var(--h1);
+  line-height: 1.15;
+  letter-spacing: .2px;
+  color: var(--brand);
+  margin-bottom: 12px;
+}
+.hero p{
+  color: rgba(0,0,0,.85);
+  max-width: 70ch;
+}
+
+/* ---------- Hero Message (画像+中央文字) ---------- */
+.hero-message{
+  position: relative;
+  width: 100%;
+  height: clamp(220px, 30vh, 360px);
+  overflow: hidden;
+  padding: 0;
+  margin-bottom: 32px;
+}
+
+.hero-message > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: blur(1px) brightness(1.08);
+  display: block;
+}
+
+.hero-message::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,.25);
+}
+
+.hero-logo{
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.hero-logo img{
+  display: block;
+  width: clamp(70px, 10vw, 130px);
+  height: auto;
+}
+
+.hero-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 2;
+
+  color: rgba(255,255,255,.92);
+  font-weight: 1000;
+  font-style: italic;
+  letter-spacing: 6px;
+  text-align: center;
+  text-shadow: 0 4px 20px rgba(0,0,0,.4);
+
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  max-width: 92vw;
+  font-size: clamp(32px, 8vw, 84px);
+}
+
+@media (max-width: 768px){
+  .hero-message{
+    height: 280px;
+    margin-bottom: 24px;
+  }
+
+  .hero-logo{
+    top: 12px;
+  }
+
+  .hero-logo img{
+    width: clamp(56px, 18vw, 90px);
+  }
+
+  .hero-text{
+    letter-spacing: 3px;
+    font-size: clamp(28px, 9vw, 48px);
+  }
+}
+/* ---------- Reveal ---------- */
+.reveal{
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+  filter: blur(2px);
+  transition: opacity .8s ease, transform .8s ease, filter .8s ease;
+}
+.reveal.is-visible{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+
+
+/* ---------- Intro2 (活動内容などのカード3枚) ---------- */
+.intro2{ padding-top: 0; } /* sectionのpaddingに任せる */
+.intro2-head{
+  display:grid;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.intro2-kicker{
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: var(--brand);
+}
+.intro2-title{
+  text-align: center;
+  font-size: clamp(30px, 4.4vw, 54px);
+  font-weight: 1000;
+  letter-spacing: .6px;
+  line-height: 1.1;
+  color: var(--brand);
+}
+
+.intro2-grid{
+  display: grid;
+  gap: 28px;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
+}
+
+@media (max-width: 768px){
+  .intro2-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .intro2-card{
+    min-height: auto;
+    padding: 26px 22px 24px;
+    border-radius: 28px;
+    margin-top: 40px;
+  }
+}
+
+.intro2-card{
+  min-height: auto; /* 520px → 420px に縮める */
+  position: relative;
+  border: 2px solid rgba(178,18,18,0.22);
+  background: rgba(255,255,255,0.92);
+  padding: 34px 34px 20px; /* 下だけ 30px → 20px */
+  overflow: hidden;
+  border-radius: 34px;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+/* 上の細いアクセント */
+.intro2-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(178,18,18,0.92),
+    rgba(239,189,202,0.85),
+    rgba(178,18,18,0.92)
+  );
+  opacity: .95;
+}
+.intro2-card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(178,18,18,.35);
+}
+
+.intro2-card-top{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.intro2-card-title{
+  margin: -55px 0 10px;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: .4px;
+  color: rgba(0,0,0,0.92);
+  text-align: center;
+}
+
+.intro2-card-sub{
+  margin: 0;
+  font-size: 17px;
+  line-height: 2.1;
+  color: rgba(0,0,0,0.78);
+}
+
+.intro2-chip{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: rgba(178,18,18,0.92);
+  background: rgba(239,189,202,0.20);
+  border: 2px solid rgba(178,18,18,0.18);
+}
+
+.intro2-icon{ font-size: 18px; color: var(--brand); }
+
+
+.intro2-card-main{ 
+  text-align: center;
+  max-width: 30ch;
+  font-style: italic;
+  font-weight: 600;
+  color: rgba(178, 18, 18, 0.92);
+  margin: 0 auto 20px;
+  font-size: 30px;
+}
+
+.intro2-value-text{
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.80);
+}
+
+.intro2-value-title{
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.90);
+}
+
+.intro2{
+  padding-bottom: 30px;
+}
+
+.intro2-year{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: italic;
+  gap: 16px;
+  margin: 30px 0 15px;
+  font-size: clamp(36px, 2.8vw, 48px);
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: rgba(178,18,18,0.9);
+  text-transform: uppercase;
+}
+
+.intro2-year::before,
+.intro2-year::after{
+  content: "";
+  width: 70px;
+  height: 2px;
+  background: rgba(178,18,18,0.25);
+  border-radius: 999px;
+}
+
+/* ---------- NEWS ---------- */
+.news-section{ padding-top: 0; }
+.news-title{
+  font-size: clamp(34px, 5vw, 48px);
+  font-weight: 1000;
+  letter-spacing: 2px;
+  color: var(--brand);
+  margin-bottom: 14px;
+}
+.news-list{ border-top: 2px solid var(--brand); }
+
+.news-item{
+  display:block;
+  padding: 20px 0;
+  border-bottom: 2px solid var(--brand);
+  transition: background-color .15s ease;
+}
+.news-item:hover{ background: rgba(77, 5, 29, 0.03); }
+
+.news-row{
+  display:flex;
+  gap: 14px;
+  align-items:center;
+  flex-wrap: wrap;
+}
+.news-date{
+  font-size: 18px;
+  font-weight: 1000;
+  letter-spacing: .5px;
+  color: rgba(0,0,0,.92);
+}
+.news-tag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 100px;
+  height: 36px;
+  padding: 0 14px;
+  border: 2px solid var(--brand);
+  color: var(--brand);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 1px;
+  border-radius: 999px;
+}
+.news-text{
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(0,0,0,.92);
+}
+
+.news-more{ margin-top: 22px; }
+.news-more-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height: 60px;
+  border: 2px solid var(--brand);
+  color: var(--brand);
+  font-weight: 1000;
+  letter-spacing: 1px;
+  border-radius: var(--radius);
+  transition: background-color .15s ease;
+}
+.news-more-btn:hover{ background: rgba(178,18,18,.06); }
+
+/* ---------- NEXT GAME ---------- */
+.next-game-section{ padding-top: 0; }
+
+.next-game-inner2,
+.result-card{
+  width: 100%;
+  border: 1px solid rgba(178,18,18,.35);
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.hero,
+.news-section,
+.access,
+.staff-area,
+.next-game-section {
+  width: var(--pageW);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.next-game-header2,
+.result-header{
+  background: linear-gradient(180deg, var(--brand), rgba(255,255,255,.92));
+  color: rgba(255,255,255,.92);
+  text-align:center;
+  font-weight: 1000;
+  font-style: italic;
+  letter-spacing: 4px;
+  font-size: clamp(18px, 3vw, 28px);
+  padding: 18px 0;
+}
+
+.result-header1{
+  background: linear-gradient(180deg, var(--brand), rgba(255,255,255,.92));
+  color: rgba(62, 62, 62, 0.92);
+  text-align:center;
+  font-weight: 1000;
+  letter-spacing: 4px;
+  font-size: clamp(18px, 3vw, 28px);
+  padding: 18px 0;
+}
+
+.next-game-body2{
+  padding: clamp(26px, 4.5vw, 64px) clamp(16px, 3vw, 24px);
+  text-align:center;
+}
+
+.ng-meta{
+  margin: 10px 0 12px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: rgba(0,0,0,.75);
+  font-weight: 500;
+}
+.ng-date{
+  margin: 0;
+  font-size: clamp(34px, 6vw, 50px);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #000;
+  white-space: nowrap;
+}
+.ng-venue{
+  margin: 14px 0 28px;
+  font-size: 18px;
+  color: rgba(0,0,0,.75);
+  font-weight: 500;
+
+}
+
+/* 対戦カード（PC横 / スマホ縦） */
+.ng-match{
+  display:grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items:center;
+  gap: 18px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.ng-team{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  gap: 12px;
+}
+.ng-vs{
+  font-size: clamp(18px, 3vw, 44px);
+  font-weight: 1000;
+  letter-spacing: 4px;
+  color: rgba(0,0,0,.8);
+}
+.ng-team-name{
+  margin: 0;
+  font-size: clamp(16px, 2.3vw, 28px);
+  font-weight: 900;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* ★ロゴのサイズ統一（ここが答え） */
+.ng-logo,
+.team-logo{
+  width: clamp(92px, 14vw, 140px);
+  height: clamp(92px, 14vw, 140px);
+  object-fit: contain;
+}
+
+.ng-logo1,
+.team-logo1{
+  width: clamp(150px, 14vw, 150px);
+  height: clamp(150px, 14vw, 150px);
+  object-fit: contain;
+}
+
+
+/* スマホ */
+@media (max-width: 640px){
+  .ng-match{
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .ng-date{ white-space: normal; }
+  .ng-team-name{ white-space: normal; }
+}
+
+/* ---------- RESULT ---------- */
+.result-grid{
+  display:grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  align-items: stretch;
+}
+.team{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  padding: clamp(18px, 3vw, 40px) 18px;
+}
+.team:nth-child(1){ border-right: 1px solid rgba(0,0,0,.06); }
+.team:nth-child(3){ border-left:  1px solid rgba(0,0,0,.06); }
+
+.team-name{
+  font-size: clamp(18px, 2.6vw, 28px);
+  font-weight: 1000;
+  color: #111;
+  text-align:center;
+}
+
+.result-center{
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  padding: clamp(18px, 3vw, 34px) 18px;
+  text-align:center;
+}
+
+.result-meta{
+  font-size: 16px;
+  font-weight: 800;
+  font-style: italic;
+  color: rgba(0,0,0);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.result-score{
+  display:flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 8px 0 12px;
+}
+.result-score .score{
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 1000;
+  color: #222;
+  line-height: 1;
+}
+.result-score .dash{
+  font-size: clamp(34px, 6vw, 64px);
+  font-weight: 1000;
+  color: rgba(178, 18, 18, 0.60);
+}
+
+.result-vs{
+  margin-top: 2px;
+  font-size: 26px;
+  font-weight: 1000;
+  color: rgba(178, 18, 18, 0.60);
+  letter-spacing: 2px;
+}
+.result-info{
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  color: rgba(0,0,0,.80);
+  line-height: 1.8;
+}
+
+/* RESULT：スマホ縦 */
+@media (max-width: 860px){
+  .result-grid{
+    grid-template-columns: 1fr 1.2fr 1fr;
+  }
+}
+
+/* ---------- ROSTER (選手紹介) ---------- */
+/* ---------- ROSTER (選手紹介) ---------- */
+.roster{
+  width: var(--pageW);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.roster-title{
+  margin: 0 0 22px;
+  font-size: clamp(34px, 5vw, 64px);
+  font-weight: 1000;
+  letter-spacing: 1px;
+  color: var(--brand);
+  text-align: center;
+}
+
+/* 4列 → 2列（最小でも2列） */
+.roster-grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 36px 24px;
+}
+
+@media (max-width: 980px){
+  .roster-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 16px;
+  }
+}
+
+.player-court{
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+  color: rgba(0,0,0);
+  text-align: center;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+
+@media (max-width: 560px){
+  .player-name-ja{
+    font-size: 18px;
+  }
+
+  .player-name-en{
+    font-size: 12px;
+  }
+
+  .no{
+    font-size: 42px;
+  }
+
+  .pos{
+    font-size: 16px;
+  }
+
+  .player-court{
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+  }
+}
+
+.info-title {
+  font-weight: 900;
+}
+
+/* カード */
+.player-card{ position: relative; }
+
+
+
+/* 右上のMG/TR/背番号が顔に被りやすいので、少し外に逃がす */
+.player-top{
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  /*transform: translateY(-30%); /* 被りを軽減（必要なら -60% など調整） */
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  pointer-events: none; /* クリック邪魔しない */
+}
+
+/* 背番号・ポジ（視認性） */
+.no{
+  font-size: clamp(44px, 5vw, 50px);
+  font-weight: 1000;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--brand);
+  font-style: italic;
+}
+
+.no1{
+  font-size: clamp(40px, 5vw, 44px);
+  font-weight: 1000;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--brand);
+  font-style: italic;
+}
+
+.small-no{
+  font-size: 39px;
+}
+
+.small-no{
+  font-size: 42px;
+}
+
+.pos{
+  font-size: clamp(18px, 2.6vw, 28px);
+  font-weight: 1000;
+  letter-spacing: 1px;
+  color: rgba(0,0,0,.55);
+  font-style: italic;
+}
+
+/* 下線 */
+.player-line{
+  height: 2px;
+  background: var(--brand);
+  margin: 12px 0 10px;
+  opacity: .85;
+}
+
+/* 名前 */
+.player-name-en{
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(0,0,0,.70);
+  text-align: center;
+}
+.player-name-ja{
+  margin-top: 6px;
+  font-size: 22px;
+  font-weight: 1000;
+  color: rgba(0,0,0,.92);
+  text-align: center;
+}
+
+/* ---------- Access / Map ---------- */
+.access{
+  width: var(--pageW);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+.access-title{
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 1000;
+  margin-bottom: 8px;
+  color: var(--brand);
+}
+.access-place{
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: var(--brand);
+}
+
+.map-box{
+  border: 1px solid rgba(178,18,18,.35);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+}
+.map-box iframe{
+  width: 100%;
+  height: clamp(250px, 52vw, 360px);
+  border: 0;
+  display:block;
+}
+
+/* ---------- Footer ---------- */
+/* 100vw + calc をやめて「素直に全幅」にする */
+.footer-full{
+  width: 100%;
+  background: var(--brand);
+  color: #fff;
+  text-align: center;
+  padding: 22px 0;
+}
+.footer-sns{
+  display:flex;
+  justify-content:center;
+  gap: 24px;
+  margin-bottom: 10px;
+}
+.footer-sns a{
+  font-size: 38px;
+  color: #fff;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.footer-sns a:hover{
+  transform: translateY(-3px);
+  opacity: .85;
+}
+small a{ text-decoration: underline; }
+
+/* ---------- Utilities ---------- */
+.section-title-label{
+  margin: 26px 0 12px;
+  font-size: 18px;
+  font-weight: 1000;
+  color: rgba(0,0,0,.92);
+  border-left: 6px solid var(--brand);
+  padding-left: 12px;
+}
+
+/* Coming Soon */
+.coming-wrap{
+  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(180deg, var(--brand), #fff);
+}
+.coming-box{ text-align:center; padding: 24px; }
+.coming-box h1{
+  font-size: clamp(42px, 6vw, 72px);
+  letter-spacing: 4px;
+  font-weight: 1000;
+  color: #fff;
+}
+.coming-box .line{
+  width: 120px;
+  height: 3px;
+  background: #fff;
+  margin: 18px auto;
+}
+.coming-box p{
+  font-size: 18px;
+  color: rgba(255,255,255,.92);
+}
+
+/* ===========================
+   最小修正パッチ（追記用）
+   HTML構成・デザインは変えずに崩れだけ直す
+=========================== */
+
+/* 1) 横ズレ防止（スマホで謎の横スクロール出る対策） */
+html, body { overflow-x: hidden; }
+
+/* 2) typo 修正（gba → rgba になってなくて hover の枠色が効いてない） */
+.intro2-card:hover{
+  border-color: rgba(178,18,18,0.35);
+}
+
+/* 3) ロゴサイズ統一（NEXT GAME と RESULT 共通） */
+.ng-logo,
+.team-logo{
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}
+
+/* スマホでは少し小さく */
+@media (max-width: 640px){
+  .ng-logo,
+  .team-logo{
+    width: 110px;
+    height: 110px;
+  }
+}
+
+/* 写真枠（全員同じ比率） */
+.player-photo,
+.player-photo1{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  transform: none;
+}
+
+.player-photo img,
+.player-photo1 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% var(--focus-y, 0%);
+  display: block;
+  transform: scale(var(--zoom, 1));
+  transform-origin: center center;
+}
+
+
+.player-photo.bright img{
+  filter: brightness(1.28);
+}
+
+.player-photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  
+}
+
+.fix-mg{
+  top: 28px !important;
+  right: 18px !important;
+}
+
+.fix-mg .no{
+  font-size: 52px !important;
+}
+
+/* ★宣材の統一：ここで全部揃う */
+
+
+.player-photo.is-contain img{
+  object-fit: contain;
+  background: transparent;
+}
+
+/* 画像の見え方を統一（顔が上寄りに出るように） 
+.player-photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 顔が切れにくい「上寄せ」デフォルト 
+  object-position: 50% var(--focus-y,-20%);
+  display: block;
+}
+*/
+/* 5) MG/TR/背番号が顔に被る問題
+   → 文字に「背景」を付けて可読性を上げる（位置は変えないので見た目破壊しない）
+*/
+.player-top{
+  z-index: 2;
+}
+
+/*.player-top .no,
+.player-top .pos{
+  background: transparent;
+  padding: 2px 8px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+  */
+
+/* 文字が大きすぎて被りやすい人用：スマホは少しだけ縮める */
+@media (max-width: 560px){
+  .no{ font-size: 60px;
+    font-weight: 700; }
+  .pos{ font-size: 22px; }
+}
+
+.staff-area{
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+.staff-title{
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 18px;
+  color: rgba(178, 18, 18, 0.92);
+}
+
+.staff-box{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#pw{
+  width: min(300px, 100%);
+  padding: 12px 14px;
+  border: 1px solid rgba(178, 18, 18, 0.4);
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+#go{
+  padding: 12px 18px;
+  border: none;
+  background: rgba(178, 18, 18, 0.92);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#go:hover{
+  opacity: .9;
+}
+
+.err{
+  margin-top: 10px;
+  color: rgba(178, 18, 18, 0.92);
+  font-weight: 700;
+}
+
+.activity{
+  padding-top: 20px;
+}
+
+.activity-head{
+  margin-bottom: 20px;
+}
+
+.activity-title{
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 900;
+  color: var(--brand);
+}
+
+.activity-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: start;
+}
+
+.activity-card{
+  position: relative;
+  background: #fff;
+  border: 2px solid rgba(178,18,18,0.18);
+  border-radius: 28px;
+  padding: 26px 24px 24px;
+  overflow: hidden;
+}
+
+/* 上のラインは残す */
+.activity-card::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    rgba(178,18,18,0.9),
+    rgba(239,189,202,0.7),
+    rgba(178,18,18,0.9)
+  );
+}
+
+/* 右上のマークを残す */
+
+
+
+.schedule-card::after{
+   content: "❃";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 14px;
+  color: rgba(178,18,18,0.9);
+}
+
+.results-card::after{
+  content: "✿";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 14px;
+  color: rgba(178,18,18,0.9);
+}
+
+.events-card::after{
+  content: "♥";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 14px;
+  color: rgba(178,18,18,0.9);
+}
+
+.detail-card::after{
+  content: "✩";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 14px;
+  color: rgba(178,18,18,0.9);
+}
+
+/* 年間イベントを左下に置く */
+.activity-card.activity-events{
+  grid-column: 1 / 2;
+}
+
+.activity-chip{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: rgba(178,18,18,0.9);
+  background: rgba(239,189,202,0.18);
+  border: 2px solid rgba(178,18,18,0.14);
+  margin-bottom: 18px;
+}
+
+.activity-card h3{
+  margin: 0 0 18px;
+  font-size: 24px;
+  font-weight: 900;
+  color: #111;
+}
+
+.activity-card p,
+.activity-card li{
+  font-size: 16px;
+  line-height: 2;
+  color: rgba(0,0,0,0.72);
+}
+
+.activity-card ul{
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+ 
+.activity-card.activity-events{
+    grid-column: auto;
+  }
+
+
+.to-top{
+  position: fixed;
+  left: 25px;
+  bottom: 24px;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(178,18,18,0.80);
+  color: #fff;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease, background .2s ease;
+}
+
+.to-top.show{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.to-top:hover{
+  background: rgba(150,12,12,0.96);
+}
+
+@media (max-width: 768px){
+  .to-top{
+    right: 14px;
+    bottom: 18px;
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
+  }
+}
+
+.player-filter{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin: 0 0 32px;
+}
+
+.filter-btn{
+  border: none;
+  background: #f2f2f2;
+  color: #999;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 14px 8px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.filter-btn.active{
+  background: var(--brand);
+  color: #fff;
+}
+
+.filter-btn:hover{
+  opacity: .9;
+}
+
+@media (max-width: 768px){
+  .player-filter{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .filter-btn{
+    font-size: 16px;
+    padding: 12px 8px;
+    border-radius: 8px;
+  }
+}
+
+
+.header .brand span,
+.header .menu a{
+  font-size: 15px;
+  line-height: 1;
+}
+
+.hero-message{
+  height: clamp(220px, 30vh, 360px);
+}
+
+
+.intro2-grid2{
+  margin-bottom: 64px;
+}
+
+/*.footer-full{
+  padding-top: 32px;
+}
+
+.footer-full{
+  width: 100%;
+  background: var(--brand);
+  color: #fff;
+  text-align: center;
+  padding: 36px 0 28px;
+}
+
+.footer-photo-wrap{
+  width: min(140px, 55%);
+  margin: 0 auto 18px;
+}
+
+
+.footer-photo{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-sponsors{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.footer-photo-wrap{
+  width: 150px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-photo{
+  max-width: 150%;
+  max-height: 150%;
+  object-fit: contain;
+}
+
+.footer-logo{
+  max-width: 120%;
+  max-height: 120%;
+}
+*/
+.wrap{
+  padding-bottom: 72px;
+}
+
+.activity-card{
+  height: 100%;
+ 
+  flex-direction: column;
+}
+
+/* ---------- Footer ---------- */
+.footer-full{
+  width: 100%;
+  background:
+    linear-gradient(180deg, rgba(178,18,18,0.96) 0%, rgba(145,12,12,0.98) 100%);
+  color: #fff;
+  margin-top: 72px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-full::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 28%),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.06), transparent 24%);
+  pointer-events: none;
+}
+
+.footer-inner{
+  position: relative;
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 44px 0 20px;
+}
+
+.footer-top{
+  display: grid;
+  grid-template-columns: 1.2fr 0.9fr 1.1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.footer-kicker{
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 10px;
+}
+
+.footer-club-name{
+  font-size: clamp(22px, 2.3vw, 30px);
+  line-height: 1.4;
+  font-weight: 900;
+  margin: 0 0 12px;
+  color: #fff;
+}
+
+.footer-desc{
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.82);
+  max-width: 34ch;
+}
+
+.footer-heading{
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-weight: 800;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 16px;
+}
+
+.footer-links{
+  display: grid;
+  gap: 10px;
+}
+
+.footer-links a,
+.footer-bottom-links a{
+  color: #fff;
+  text-decoration: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.footer-links a{
+  font-size: 15px;
+  color: rgba(255,255,255,0.92);
+}
+
+.footer-links a:hover,
+.footer-bottom-links a:hover{
+  opacity: .76;
+  transform: translateY(-1px);
+}
+
+.footer-sns{
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.footer-sns a{
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  color: #fff;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.14);
+  transition: transform .2s ease, background .2s ease, opacity .2s ease;
+}
+
+.footer-sns a:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.18);
+  opacity: 1;
+}
+
+.footer-sponsors{
+  display: flex;
+  justify-content: center;   /* 中央寄せ */
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.footer-photo-wrap{
+  width: auto;               /* 四角い枠感をなくす */
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.footer-photo{
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 140px;
+  max-height: 90px;
+  object-fit: contain;
+}
+
+.footer-logo{
+  max-width: 120px;
+  max-height: 80px;
+}
+
+.footer-center-logo{
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  width: 92px;
+  height: 92px;
+}
+
+.footer-bottom{
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.16);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-links{
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-links a{
+  font-size: 13px;
+  color: rgba(255,255,255,0.78);
+}
+
+.footer-copy{
+  font-size: 13px;
+  color: rgba(255,255,255,0.72);
+  display: block;
+}
+
+@media (max-width: 900px){
+  .footer-top{
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-desc{
+    max-width: none;
+  }
+
+  .footer-sponsors{
+    justify-content: center;
+  }
+
+  .footer-bottom{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px){
+  .footer-inner{
+    padding: 36px 0 18px;
+  }
+
+  .footer-photo-wrap{
+    width: 100px;
+    height: 76px;
+  }
+
+  .footer-center-logo{
+    width: 76px;
+    height: 76px;
+  }
+
+  .footer-links a{
+    font-size: 14px;
+  }
+
+  .footer-bottom-links{
+    gap: 12px 16px;
+  }
+}
+.footer-sponsor-block{
+  text-align: center;
+}
+
+.footer-sponsor-block .footer-heading{
+  text-align: center;
+}
+
+
+.policy-page{
+  width: min(900px, 90%);
+  margin: 0 auto;
+  padding: 64px 0 80px;
+  color: #222;
+}
+
+.policy-page h1{
+  font-size: clamp(30px, 4vw, 42px);
+  color: rgba(0, 0, 0, 0.92);
+  margin-bottom: 28px;
+}
+
+.policy-page h2{
+  font-size: 22px;
+  margin: 34px 0 12px;
+  color: rgba(0, 0, 0, 0.92);
+}
+
+.policy-page p,
+.policy-page li{
+  font-size: 17px;
+  line-height: 1.9;
+  font-weight: 450;
+  color: rgba(0,0,0,0.78);
+}
+
+.policy-page ul{
+  padding-left: 1.2em;
+}
+
+.staff-note{
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(0,0,0,0.72);
+}
+
+.staff-note.small{
+  font-size: 14px;
+  color: rgba(0,0,0,0.62);
+}
+
+/* =========================
+   フッターロゴを見た目できれいに中央揃え
+========================= */
+
+.footer-sponsors{
+  display: grid;
+  grid-template-columns: repeat(3, 140px);
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin: 0 auto 20px;
+}
+
+.footer-photo-wrap{
+  width: 140px;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.footer-photo{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* 真ん中のRLUだけ少し縦を大きく */
+.footer-center-logo{
+  width: 140px;
+  height: 110px;
+}
+
+.footer-center-logo .footer-photo{
+  max-width: 85px;
+  max-height: 100px;
+}
+
+/* 左右ロゴの見た目サイズ調整 */
+.footer-sponsors .footer-photo-wrap:first-child .footer-photo{
+  max-width: 105px;
+  max-height: 85px;
+}
+
+.footer-sponsors .footer-photo-wrap:last-child .footer-photo{
+  max-width: 125px;
+  max-height: 95px;
+}
+
+@media (max-width: 640px){
+  .footer-sponsors{
+    grid-template-columns: repeat(3, 92px);
+    gap: 14px;
+  }
+
+  .footer-photo-wrap,
+  .footer-center-logo{
+    width: 92px;
+    height: 78px;
+  }
+
+  .footer-center-logo .footer-photo{
+    max-width: 56px;
+    max-height: 70px;
+  }
+
+  .footer-sponsors .footer-photo-wrap:first-child .footer-photo{
+    max-width: 70px;
+    max-height: 56px;
+  }
+
+  .footer-sponsors .footer-photo-wrap:last-child .footer-photo{
+    max-width: 78px;
+    max-height: 62px;
+  }
+}
+
+/* =========================
+   選手紹介の写真を
+   今の調整のまま少し小さく見せる
+========================= */
+
+.player-photo,
+.player-photo1{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+}
+
+/* 画像を少し内側に入れる */
+.player-photo img,
+.player-photo1 img{
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  margin: 10px auto;
+  object-fit: cover;
+  object-position: 50% var(--focus-y, 0%);
+  display: block;
+  transform: scale(var(--zoom, 1));
+  transform-origin: center center;
+}
+
+/* スマホでは余白を少しだけ減らす */
+@media (max-width: 768px){
+  .player-photo img,
+  .player-photo1 img{
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
+    margin: 6px auto;
+  }
+}
+
+/* =========================
+   選手写真を今の調整のまま
+   はっきり小さく見せる版
+========================= */
+
+.player-photo,
+.player-photo1{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  padding: 18px;   /* ← ここで写真のまわりに余白を作る */
+}
+
+.player-photo img,
+.player-photo1 img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% var(--focus-y, 0%);
+  display: block;
+  transform: scale(var(--zoom, 1));
+  transform-origin: center center;
+}
+
+@media (max-width: 768px){
+  .player-photo,
+  .player-photo1{
+    padding: 10px;
+  }
+}
+
+/* ===== 星取表ページ ===== */
+.scoreboard-section{
+  width: min(1100px, 92%);
+  margin: 0 auto 96px;
+}
+
+.scoreboard-head{
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.scoreboard-sub{
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  color: rgba(120, 16, 34, 0.72);
+  font-weight: 700;
+}
+
+.scoreboard-title{
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #781022;
+  line-height: 1.2;
+}
+
+.scoreboard-desc{
+  margin: 14px auto 0;
+  max-width: 720px;
+  color: #4b4b4b;
+  line-height: 1.9;
+  font-size: 1rem;
+}
+
+.scoreboard-table-wrap{
+  overflow-x: auto;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(120, 16, 34, 0.10);
+  border-radius: 24px;
+  box-shadow: 0 16px 40px rgba(80, 20, 30, 0.08);
+  padding: 18px;
+  backdrop-filter: blur(6px);
+}
+
+.scoreboard-table{
+  width: 100%;
+  min-width: 860px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.scoreboard-table th,
+.scoreboard-table td{
+  border: 1px solid rgba(120, 16, 34, 0.12);
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 0.98rem;
+}
+
+.scoreboard-table thead th{
+  background: linear-gradient(135deg, #781022, #9f2742);
+  color: #fff;
+  font-weight: 700;
+}
+
+.scoreboard-table tbody th{
+  background: rgba(120, 16, 34, 0.08);
+  color: #781022;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.scoreboard-table tbody td{
+  background: #fff;
+  font-weight: 700;
+}
+
+.scoreboard-table td.same{
+  background: #f1f1f1;
+  color: #8b8b8b;
+}
+
+.scoreboard-table td.win,
+.scoreboard-legend .win{
+  color: #c2183a;
+}
+
+.scoreboard-table td.lose,
+.scoreboard-legend .lose{
+  color: #2457c5;
+}
+
+.scoreboard-table td.draw,
+.scoreboard-legend .draw{
+  color: #c98a10;
+}
+
+.scoreboard-legend{
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.scoreboard-legend span{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 768px){
+  .scoreboard-section{
+    width: min(94%, 1100px);
+    margin-bottom: 72px;
+  }
+
+  .scoreboard-table-wrap{
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  .scoreboard-table th,
+  .scoreboard-table td{
+    padding: 12px 8px;
+    font-size: 0.9rem;
+  }
+
+  .scoreboard-legend{
+    justify-content: flex-start;
+    gap: 12px 16px;
+  }
+}
+
+.scoreboard-table td.win,
+.scoreboard-table td.lose,
+.scoreboard-table td.draw{
+  vertical-align: middle;
+}
+
+.result-mark{
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.result-score{
+  display: block;
+  margin-top: 4px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #555;
+  line-height: 1.2;
+}
+
+.scoreboard-table td.win .result-mark{
+  color: #c2183a;
+}
+
+.scoreboard-table td.lose .result-mark{
+  color: #2457c5;
+}
+
+.scoreboard-table td.draw .result-mark{
+  color: #c98a10;
+}
+
+.scoreboard-layout{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 24px;
+  align-items: start;
+}
+
+.ranking-box{
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(120, 16, 34, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 16px 40px rgba(80, 20, 30, 0.08);
+  padding: 20px;
+}
+
+.ranking-sub{
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: rgba(120, 16, 34, 0.72);
+  font-weight: 800;
+}
+
+.ranking-title{
+  margin: 0 0 14px;
+  color: #781022;
+  font-size: 1.4rem;
+}
+
+.ranking-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ranking-table th,
+.ranking-table td{
+  border-bottom: 1px solid rgba(120, 16, 34, 0.12);
+  padding: 10px 6px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.ranking-table th{
+  color: #781022;
+  font-weight: 800;
+}
+
+.ranking-table td:nth-child(2){
+  text-align: left;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 980px){
+  .scoreboard-layout{
+    grid-template-columns: 1fr;
+  }
+
+  .ranking-box{
+    margin-top: 18px;
+  }
+}
+
+.scoreboard-layout{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 24px;
+  align-items: start;
+}
+
+.ranking-box{
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(120, 16, 34, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 16px 40px rgba(80, 20, 30, 0.08);
+  padding: 20px;
+}
+
+.ranking-sub{
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: rgba(120, 16, 34, 0.72);
+  font-weight: 800;
+}
+
+.ranking-title{
+  margin: 0 0 14px;
+  color: #781022;
+  font-size: 1.4rem;
+}
+
+.ranking-table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ranking-table th,
+.ranking-table td{
+  border-bottom: 1px solid rgba(120, 16, 34, 0.12);
+  padding: 10px 6px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.ranking-table th{
+  color: #781022;
+  font-weight: 800;
+}
+
+.ranking-table td:nth-child(2){
+  text-align: left;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 980px){
+  .scoreboard-layout{
+    grid-template-columns: 1fr;
+  }
+}
+
+.scoreboard-table{
+  width: 100%;
+  min-width: 0;          /* ← 横スクロールの原因を消す */
+  table-layout: fixed;
+}
+
+.scoreboard-table-wrap{
+  overflow-x: visible;   /* ← スライドしない */
+  padding: 10px;
+}
+
+.scoreboard-table th,
+.scoreboard-table td{
+  padding: 8px 4px;
+  font-size: clamp(0.62rem, 0.8vw, 0.9rem);
+  word-break: keep-all;
+}
+
+.scoreboard-table thead th{
+  font-size: clamp(0.58rem, 0.75vw, 0.85rem);
+  line-height: 1.3;
+}
+
+.scoreboard-table tbody th{
+  font-size: clamp(0.6rem, 0.8vw, 0.88rem);
+}
+
+.result-mark{
+  font-size: clamp(0.8rem, 1vw, 1.05rem);
+}
+
+.result-score{
+  font-size: clamp(0.55rem, 0.72vw, 0.8rem);
+}
+
+.scoreboard-layout{
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 16px;
+}
+
+@media (max-width: 980px){
+  .scoreboard-layout{
+    grid-template-columns: 1fr;
+  }
+
+  .scoreboard-table th,
+  .scoreboard-table td{
+    padding: 6px 2px;
+    font-size: 0.58rem;
+  }
+
+  .scoreboard-table thead th{
+    font-size: 0.52rem;
+  }
+
+  .result-score{
+    font-size: 0.5rem;
+  }
+}
